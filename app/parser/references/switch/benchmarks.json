@@ -1,0 +1,22 @@
+{
+	"benchmarks": [
+		{
+			"name": "Enable aaa new-model",
+			"level": 1,
+			"description": "this command enables the AAA access control system",
+			"audit": "show running-config | incl aaa new-model",
+			"remediation": "aaa new-model",
+			"impact": "Implementing Cisco AAA immediately disables former default access methods",
+			"searchstring": "aaa new-model"
+		},
+		{
+			"name": "Enable aaa authentication login",
+			"level": 1,
+			"description": "Sets authentication, authorization, and accounting (AAA), authentication at login",
+			"audit": "show run | incl aaa authentication login",
+			"remediation": "aaa authentication login {default | aaa list name} [passwd-expiry] [method1] [method2]",
+			"impact": "Implementing Cisco AAA immediately disables former default access methods",
+			"searchstring": "aaa authentication login"
+		}
+	]
+}
