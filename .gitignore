@@ -1,3 +1,7 @@
 *.pyc
+*.pyo
+bin/
+
 tests/
 data/
+__pycache__/
