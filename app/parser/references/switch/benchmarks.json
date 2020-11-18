@@ -36,6 +36,100 @@
 			]
 		},
         {
+			"name": "Set 'login authentication for 'line con 0'",
+			"level": 1,
+			"description": "Authenticates users who access the router or switch using the serial console port",
+			"audit": "hostname#: sh run | sec line | incl login authentication",
+			"remediation": "hostname(config)#line console 0\nhostname(config-line)#login authentication {default | _aaa_list_name_}",
+			"impact": "Enabling Cisco AAA 'line login' is significantly disruptive as former access methods are immediately disabled.  Therefore, before enabling Cisco AAA 'line login', the organization should plan and implement authentication logins, and passwords, challenges, and responses, and token technologies",
+			"searchstring": [
+			    "login authentication"
+			]
+		},
+
+
+        {
+			"name": "Set 'login authentication for 'line tty'",
+			"level": 1,
+			"description": "Authenticates users who access the router or switch using the TTY port",
+			"audit": "hostname#sh run | sec line | incl login authentication",
+			"remediation": "hostname(config)#line tty {line-number} [ending-line-number]\nhostname(config-line)#login authentication {default | aaa_list_name}",
+			"impact": "Enabling Cisco AAA 'login authentication for line TTY' is significantly disruptive as former access methods are immediately disabled.  Therefore, before enabling Cisco AAA 'line login', the organization should plan and implement authentication logins, and passwords, challenges, and responses, and token technologies",
+			"searchstring": [
+			    "login authentication"
+			]
+		},
+
+
+        {
+			"name": "Set 'login authentication for 'line vty'",
+			"level": 1,
+			"description": "Authenticates users who access the router or switch using the VTY port",
+			"audit": "hostname#sh run | sec line | incl login authentication",
+			"remediation": "hostname(config)#line vty {line-number} [ending-line-number]\nhostname(config-line)#login authentication {default | aaa_list_name}",
+			"impact": "Enabling Cisco AAA 'login authentication for line VTY' is significantly disruptive as former access methods are immediately disabled.  Therefore, before enabling Cisco AAA 'line login', the organization should plan and implement authentication logins, and passwords, challenges, and responses, and token technologies",
+			"searchstring": [
+			    "login authentication"
+			]
+		},
+
+        {
+			"name": "Set 'aaa accounting' to log all privileged use commands using 'commands 15'",
+			"level": 1,
+			"description": "Runs accounting for all commands at the specified privilege level",
+			"audit": "hostname#sh run | incl aaa accounting commands",
+			"remediation": "hostname(config)#aaa accounting commands 15 {default | list-name | guaranteefirst} {start-stop | stop-only | none} {radius | group group-name}",
+			"impact": "Enabling 'aaa accounting' for privileged commands records and sends activity to the accounting servers and enables organizations to monitor and analyze priviledged activity.",
+			"searchstring": [
+			    "aaa ccounting commands"
+			]
+		},
+
+
+
+        {
+			"name": "Set 'aaa accounting connection'",
+			"level": 1,
+			"description": "Provides information about all outbound connections made from the network access server.",
+			"audit": "hostname#sh run | incl aaa accounting connection",
+			"remediation": "hostname(config)#aaa accounting connection {default | list-name | guaranteefirst}{start-stop | stop-only | none} {radius | group group-name}",
+			"impact": "Implementing aaa accounting connection creates accounting records about connections from the network access server.  Organizations should regularly monitor these connection records for exceptions, remediate issues, and report findings regularly.",
+			"searchstring": [
+			    "aaa accounting connection"
+			]
+		},
+
+
+
+        {
+			"name": "Set 'aaa accounting exec'",
+			"level": 1,
+			"description": "Runs account for the EXEC shell session",
+			"audit": "hostname#sh run | incl aaa accounting exec",
+			"remediation": "hostname(config)#aaa accounting exec {default | list-name | guarantee-first}{start-stop | stop-only | none} {radius | group group-name}",
+			"impact": "Enabling aaa accounting exec creates accounting record for the EXEC terminal sessions on the network access server.  These records include start and stop times, usernames, and date information. Organizations should regularly monitor these records for exceptions, remediate issues, and report findings",
+			"searchstring": [
+			    "aaa accounting exec"
+			]
+		},
+
+
+
+        {
+			"name": "Set 'privilege 1' for local users",
+			"level": 1,
+			"description": "Sets the privilege lever for the user.",
+			"audit": "hostname#show run | incl privilege",
+			"remediation": "hostname(config)#username <LOCAL_USERNAME> privilege 1 ",
+			"impact": "Organizations should create policies requiring all local accounts with 'privlege level 1' with encrypted passwords to reduce the risk of unauthorized access.  DEfault configuration settings do not provide strong user authentication to the device.",
+			"searchstring": [
+			    "privilege"
+			]
+		},
+
+
+
+        {
 			"name": "",
 			"level": 1,
 			"description": "",
@@ -46,6 +140,330 @@
 			    ""
 			]
 		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
+
+
+
+        {
+			"name": "",
+			"level": 1,
+			"description": "",
+			"audit": "",
+			"remediation": "",
+			"impact": "",
+			"searchstring": [
+			    ""
+			]
+		},
+
 
         {
 			"name": "",
@@ -58,5 +476,6 @@
 			    ""
 			]
 		}
+
 	]
 }

@@ -58,27 +58,47 @@ class Device:
         self._deviceVersion = self._deviceConfig[self._deviceConfig.find(searchString) + len(searchString):].split('\n')[0]
 
     def performAudit(self):
+        numTests = 0
+        numCorrect = 0
+        #Load benchmarks into memory
         with open(self._benchmarkPath, 'r') as f:
             data = json.load(f)
         
 
+        #Header
         print(bcolors.HEADER + "Performing CIS Level 1 Benchmark Audit for%s" % self._deviceName + bcolors.RESET)
+        #Loop through each benchmark
         for benchmark in data['benchmarks']:
+            numTests += 1
             print("#" * 20)
             print(bcolors.BOLD + bcolors.UNDERLINE + benchmark['name'] + bcolors.RESET)
             print(bcolors.BOLD + bcolors.OKCYAN + "Description: " + bcolors.RESET + benchmark['description'])
-            if benchmark['searchstring'][0] in self._deviceConfig:
+
+
+            #Check all search strings from the benchmarks json
+            anyMatch = False
+            for searchstring in benchmark['searchstring']:
+                if searchstring in self._deviceConfig:
+                    anyMatch = True
+                    break
+            
+            if anyMatch:
+                numCorrect += 1
                 print(bcolors.BOLD + self._deviceName + bcolors.OKGREEN + " Passes!" + bcolors.RESET)
             else:
                 print(bcolors.BOLD + self._deviceName + bcolors.OKRED + " Fails!" + bcolors.RESET)
                 print(bcolors.BOLD + bcolors.OKCYAN + "Remediation: " + bcolors.RESET + benchmark['remediation'])
                 print(bcolors.BOLD + bcolors.OKCYAN + "Potential Impact: " + bcolors.RESET + benchmark['impact'])
-                    
+
             print("#" * 20 + "\n")
 
+        print(bcolors.BOLD + bcolors.OKCYAN + self._deviceName + " CIS Assessment Results" + bcolors.RESET)
+        print(((bcolors.BOLD + bcolors.UNDERLINE + bcolors.WARNING + "#") * 26) + bcolors.RESET)
+        print(bcolors.OKGREEN + "#Passed: " + str(numCorrect) + bcolors.RESET)
+        print(bcolors.OKRED + "#Failed: " + str(numTests - numCorrect) + bcolors.RESET)
+            
 
-
-
+        
 
 
 
